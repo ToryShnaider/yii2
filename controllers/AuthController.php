@@ -11,7 +11,7 @@ use app\models\LoginForm;
 use app\models\SignupForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class AuthController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -49,6 +49,8 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
+
+
 
     public function actionSignup()
     {
@@ -118,7 +120,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionMyAccount()
     {
         return $this->render('about');
     }
