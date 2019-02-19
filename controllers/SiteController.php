@@ -2,21 +2,22 @@
 
 namespace app\controllers;
 
+
+use app\models\Orders;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\SignupForm;
+
 use app\models\ContactForm;
+
 
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-
 
     /**
      * {@inheritdoc}
@@ -41,7 +42,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $dataProvider = new ActiveDataProvider([
+            'query' => Orders::find()->andWhere(['status'=>'free']),
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
@@ -123,5 +130,19 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+//    public function actionTakeOrder()
+//    {
+//        $model = new Orders();
+//
+//        if ($model->load(Yii::$app->request->post())) {
+//            $model->id_customer = Yii::$app->user->id;
+//            if ($model->save()) {
+//                return $this->redirect(['view', 'id' => $model->id]);
+//            }
+//            return $this->render('create', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
 }

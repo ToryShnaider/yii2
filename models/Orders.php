@@ -30,10 +30,10 @@ class Orders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'text', 'status', 'id_customer', 'id_executor'], 'required'],
-            [['text'], 'string'],
-            [['id_customer', 'id_executor'], 'integer'],
-            [['title', 'status'], 'string', 'max' => 255],
+            [['title', 'text'], 'required'],
+            [['text','status'], 'string'],
+            [['id_customer','id_executor'], 'integer'],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,9 +46,6 @@ class Orders extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'text' => 'Text',
-            'status' => 'Status',
-            'id_customer' => 'Id Customer',
-            'id_executor' => 'Id Executor',
         ];
     }
 }
